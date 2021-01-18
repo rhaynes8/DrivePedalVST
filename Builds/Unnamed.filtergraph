@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FILTERGRAPH>
+  <FILTER uid="1" x="0.5" y="0.1">
+    <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="246006c0" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="2"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="2" x="0.25" y="0.1">
+    <PLUGIN name="MIDI Input" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="a9e4f9eb" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="3" x="0.5" y="0.9">
+    <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="724248cb" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="2" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="4" x="0.25" y="0.9">
+    <PLUGIN name="MIDI Output" descriptiveName="" format="Internal" category="I/O devices"
+            manufacturer="JUCE" version="1.0" file="" uid="9d5bbb00" isInstrument="0"
+            fileTime="0" infoUpdateTime="0" numInputs="0" numOutputs="0"
+            isShell="0"/>
+    <STATE>0.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="disabled"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="disabled"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="5" x="0.48125" y="0.6146272855133614" uiLastX_Normal="1132"
+          uiLastY_Normal="100" uiopen_Normal="1">
+    <PLUGIN name="PedalModelling" format="VST3" category="Fx" manufacturer="yourcompany"
+            version="1.0.0" file="/Users/Richie/Library/Audio/Plug-Ins/VST3/PedalModelling.vst3"
+            uid="acf4d5f3" isInstrument="0" fileTime="1751e66ca7c" infoUpdateTime="1751e695027"
+            numInputs="2" numOutputs="2" isShell="0"/>
+    <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="6" x="0.455" y="0.4444444444444444" uiLastX_Normal="83"
+          uiLastY_Normal="378" uiopen_Normal="1">
+    <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
+            manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
+            uid="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="1751e695027"
+            numInputs="0" numOutputs="2" isShell="0"/>
+    <STATE>814.hAGaoMGcv.C1AHv.DTfAGfPBJr.IkXxIpvUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPhxfFR2fCO.AVFkFak4TXsU1URU1Yo8lay8EDy7RUyUlby8hToMFZoU1KDU1bqQ2av8BMz.CR58EMzDCLvfjdeEiMhkFceMCLyU1XtbWX1EZDTKwDTTgEWfQFdIUYmk1atQzakMGSu8FbZIUYmk1atQTXzE1WP.QRyMUYrU1XzUFYRU1Yo8laZIUYmk1at4TXsUFBOAAb...........DNWu.A.....ZQRC..fA...JaI...X...DNWu.A.....ZQRC..fA..APCLHA....P................................................................9uPA......jfVNU1cfHUYmk1atMcCNrAGcfgWIM2TkwVYiQWYjYTZrU1WP30KUMWYxM2KRk1XnkVYuPTYysFcuA2KMU0TIMzKEA0KEYWYxclbkUlauLEck01buHUZigVZk8ERgkmakMGHs.xUn8FHK41a2MGHnLEck01bo7BSjcDcxAhSTIiK2Elcg5A0RLAEUXAHXHBBOAAb...........fCWu.A.....iDUC..fA...llI...X...fCWu.A.....iDUC..fA..ALJAC.....P.................................................................fVH......jfVNU1cfHUYmk1atkfDgYFbrAA.RDVcm4lznjxCbXkQowVYfDiUFkFakAhLXUkazkFcrUFY.f..Y.fI.rB.IAPT.jE.dA.b.TG.5Avd.3G.CB.i.PI.JC.y.TM.jCv6AHP.MDfCADX.BFPiAPY.iJ.ABXf.OH.DBLn.DJviB.o.UJvkBvo.gJ.pB7J.......f.A.........vJ..................f.3B</STATE>
+    <LAYOUT>
+      <INPUTS/>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="7" x="0.49" y="0.7369901547116737" uiLastX_Normal="20" uiLastY_Normal="23"
+          uiopen_Normal="0">
+    <PLUGIN name="Oscilloscope" format="AudioUnit" category="Effect" manufacturer="SocaLabs"
+            version="1.0.5" file="AudioUnit:Effects/aufx,Oscl,Soca" uid="7d696675"
+            isInstrument="0" fileTime="0" infoUpdateTime="1751e695028" numInputs="1"
+            numOutputs="1" isShell="0"/>
+    <STATE>881.hAGaoMGcv.C1AHv.DTfAGfPBJrvDTTgEWvUag4VclE1XzUmbkIGUjEFcgwUYrUVak4Fcs3VXsU1UyUmXzkGbkckckI2bo8laTQWdvU1WP7fZ0MVYPwVcmklaSQWXzUFUtEVakIwTuMVXOAAS...............B....v.........PL9jWR4C...HyO........y7C........M+........TyO........17C.......vM.....HMCM3PDQESTxD8CPDELUkjavUGcQ+fDV8TczAWczIwSyMFaP.fDgUmY38TDBHCO+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9zfBMn.OyQWXzUFH1EFa0UFUxUVY8HhIrQ2N+fWarAhckI2bo8la8XRb08Fc6DiKvXRb08Fc6.RYtM1ajklam0iIwU2azsSUTYTK3XRb08Fc67iImQ2NlLRLyriIiDCL6XxHwLyNlLRLvriIrQ2NyQWXzUFH2kFYzgVOlDWcuQ2N2.CNlDWcuQ2NffVYocFZz0iIwU2azsCM1fiIwU2azsyKlbFc6XxHwLyNlLRLvriHMn.Hf.BHf.BHvI2amIWXs0iHvHhOMn.HfvCbgIWXsARcoQVOhLWXsAGakMGTkIGTogWYrIBH1EFa8HRLt.iHu3SCJ.BH7.WXxEVafTWZj0iH581asIBH1EFa8HRLt.iHu3SCJ.BH7.WXxEVafTWZj0iHuYlYyUFcewlHfXWXr0iHv3BLh7hOMn.HfvCbgIWXsARcoQVOh7lYlMWYz8kbh.hcgwVOh.iKvHxK9zfBf.BOvElbg0FH0kFY8HBcxk1YmUlbeMFZg4lHfXWXr0iHv3BLh7hOMn.HfvCbgIWXsARcoQVOhPmboc1YkI2Ws8FYkIBH1EFa8HRLt.iHu3SCJ.BH7.WXxEVafTWZj0iHzIWZmcVYx8EakYWYrIBH1EFa8HBLt.iHu3SCJ.BH7.WXxEVafTWZj0iHzIWZmcVYx8EbuMmHfXWXr0iHv3BLh7hOMn.OuLGcgQWY9zfBXUkazkFcrUFY.f..Y.fI.rB.3..P.fD.MAvW.PF.oA.t.zK.+BPv.PL.FC.y.7L.VCv1.zM.hO.F........BD..........X...................CDB</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="C"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="C"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <CONNECTION srcFilter="5" srcChannel="0" dstFilter="7" dstChannel="0"/>
+  <CONNECTION srcFilter="5" srcChannel="1" dstFilter="7" dstChannel="0"/>
+  <CONNECTION srcFilter="6" srcChannel="0" dstFilter="5" dstChannel="0"/>
+  <CONNECTION srcFilter="6" srcChannel="1" dstFilter="5" dstChannel="1"/>
+  <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="7" srcChannel="0" dstFilter="3" dstChannel="1"/>
+</FILTERGRAPH>
