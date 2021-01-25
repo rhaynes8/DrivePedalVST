@@ -19,19 +19,6 @@ Distortion::Distortion()
 
     {
         return (tanh(pow(10, this->getGain() / 20) * x))/tanh(pow(10, this->getGain() / 20));
-        
-        //return tanh(pow(10, this->getGain() / 20) * x);
-        
-        // Allow gain to reach a zero value despite a logarithmic functionality
-        // Take on a linear value for 0 <= x <= 1;
-        /*if (getGain() < 1) {
-            return tanh(double(this->getGain()) * x);
-        } else {
-            // log otherwise
-            return tanh(pow(10, this->getGain() / 20) * x);
-        //} */
-
-        //return juce::jlimit (float (-0.75), float (0.75), this->getGain() * x);
  
         
     };
@@ -40,7 +27,7 @@ Distortion::Distortion()
     preGain.setGainDecibels (20.0f);
     
     auto& postGain = processorChain.template get<postGainIndex>();
-    postGain.setGainDecibels (10.0f);
+    postGain.setGainDecibels (0.0f);
 }
 
 //==============================================================================
