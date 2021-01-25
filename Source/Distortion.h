@@ -46,10 +46,6 @@ private:
     juce::dsp::ProcessorChain<juce::dsp::ProcessorDuplicator<Filter, FilterCoefs>,
                              juce::dsp::Gain<float>, juce::dsp::WaveShaper<float, std::function<float (float)>>, juce::dsp::Gain<float>> processorChain;
     
-    //juce::dsp::ProcessorChain<juce::dsp::Gain<float>, juce::dsp::WaveShaper<float, std::function<float (float)>>, juce::dsp::Gain<float>> processorChain;
-    
-    //juce::dsp::ProcessorChain<juce::dsp::ProcessorDuplicator<Filter, FilterCoefs>, juce::dsp::WaveShaper<float, std::function<float (float)>>> processorChain;
-    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Distortion)
     
 };
