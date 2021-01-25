@@ -25,7 +25,7 @@ filterTree(*this, nullptr, "Parameter", { std::make_unique<juce::AudioParameterF
 
 
 
-// Initialise the low pass filter - works exactly the same for other filters
+// Initialise the distortion and convolution objects
 hfDistortion(),
 fbDistortion(),
 hfConvolution(),
@@ -34,7 +34,6 @@ fbConvolution(),
 toneControlFilter(juce::dsp::IIR::Coefficients<float>::makeFirstOrderLowPass(44100, 723.4)),
 hfHighPass(juce::dsp::IIR::Coefficients<float>::makeFirstOrderHighPass(44100, 700)),
 lfLowPass(juce::dsp::IIR::Coefficients<float>::makeFirstOrderLowPass(44100, 700))
-//overallBandPass(juce::dsp::IIR::Coefficients<float>::makeBandPass(44100, 2000, 0.45))
 
 #endif
 {
@@ -126,8 +125,6 @@ void PedalModellingAudioProcessor::prepareToPlay (double sampleRate, int samples
     hfHighPass.reset();
     lfLowPass.prepare(spec);
     lfLowPass.reset();
-    //overallBandPass.prepare(spec);
-    //overallBandPass.reset();
     
     hfDistortion.prepare(spec);
     hfConvolution.prepare(spec);
@@ -178,7 +175,7 @@ void PedalModellingAudioProcessor::updateFilter ()
 
     *toneControlFilter.state = *juce::dsp::IIR::Coefficients<float>::makeLowPass(getSampleRate(), centreFreq);
     hfDistortion.setGain(gain);
-    fbDistortion.setGain(gain/2);
+    fbDistortion.setGain(gain/4);
     
     hfDistortion.setFreq(centreFreq);
     fbDistortion.setFreq(centreFreq);
@@ -205,37 +202,27 @@ void PedalModellingAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
         // Write the buffer's data to do separate variables
         auto* channelData = buffer.getWritePointer (channel);
         auto* bufferData = buffer.getWritePointer (channel);
-        //auto* originalData = buffer.getWritePointer (channel);
+
         // Copy the buffer data to our two new buffers
         hfBuffer.copyFrom(channel, 0, channelData, bufferLength);
         feedbackBuffer.copyFrom(channel, 0, bufferData, bufferLength);
-        //ogBuffer.copyFrom(channel, 0, originalData, bufferLength);
-        //ogBuffer.applyGain(0.5);
+
     }
     juce::dsp::AudioBlock<float> hfBlock(hfBuffer);
     juce::dsp::AudioBlock<float> feedbackBlock(feedbackBuffer);
-    //juce::dsp::AudioBlock<float> ogBlock(ogBuffer);
-
-    //overallBandPass.process(juce::dsp::ProcessContextReplacing<float>(ogBlock));
-    
-    if (convolutionToggle == 1) {
-        hfConvolution.process(juce::dsp::ProcessContextReplacing<float>(hfBlock));
-        fbConvolution.process(juce::dsp::ProcessContextReplacing<float>(feedbackBlock));
-        DBG("Convolution On");
-    } else {
-        hfConvolution.reset();
-        fbConvolution.reset();
-        DBG("Convolution Off");
-    }
     
     if (distortionToggle == 1) {
         hfDistortion.process(juce::dsp::ProcessContextReplacing<float>(hfBlock));
         fbDistortion.process(juce::dsp::ProcessContextReplacing<float>(feedbackBlock));
+        hfConvolution.process(juce::dsp::ProcessContextReplacing<float>(hfBlock));
+        fbConvolution.process(juce::dsp::ProcessContextReplacing<float>(feedbackBlock));
         updateFilter();
         DBG("Distortion On");
     } else {
         hfDistortion.reset();
         fbDistortion.reset();
+        hfConvolution.reset();
+        fbConvolution.reset();
         updateFilter();
         DBG("Distortion Off");
     }
@@ -243,17 +230,16 @@ void PedalModellingAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
     hfHighPass.process(juce::dsp::ProcessContextReplacing<float>(hfBlock));
     lfLowPass.process(juce::dsp::ProcessContextReplacing<float>(feedbackBlock));
     
-    
     buffer.clear();
     
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* hfData = hfBuffer.getReadPointer(channel);
         auto* feedbackData = feedbackBuffer.getReadPointer(channel);
-        //auto* ogData = ogBuffer.getReadPointer(channel);
+
         buffer.addFrom(channel, 0, hfData, bufferLength);
         buffer.addFrom(channel, 0, feedbackData, bufferLength);
-        //buffer.addFrom(channel, 0, ogData, bufferLength);
+
     }
     
     if (volume == previousVolume)
@@ -292,12 +278,41 @@ void PedalModellingAudioProcessor::getStateInformation (juce::MemoryBlock& destD
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
+    auto state = filterTree.copyState();
+    // Create an xml element that create a new xml file
+    std::unique_ptr <juce::XmlElement> xml (state.createXml());
+    // Allow data to be initially set from initialised their variables
+    xml->setAttribute("gain", hfDistortion.getGain());
+    xml->setAttribute("centreFreq", hfDistortion.getFreq());
+    xml->setAttribute("volume", volume);
+    
+    copyXmlToBinary(*xml, destData);
+    
 }
 
 void PedalModellingAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    
+    // Create new Xml Element to restore parameters from data entry
+    std::unique_ptr <juce::XmlElement> xmlState(getXmlFromBinary (data, sizeInBytes));
+    // Check the Xml isn't empty
+    if (xmlState != nullptr)
+        // If the data tag is corresponding to the xml
+        // xmlElement object will have tag 'Parameter', which was declared earlier
+        if (xmlState -> hasTagName(filterTree.state.getType()))
+        {
+            // Restore parameter data
+            filterTree.state = juce::ValueTree::fromXml(*xmlState);
+            volume = xmlState->getDoubleAttribute("volume");
+            hfDistortion.setFreq(xmlState->getDoubleAttribute("centreFreq"));
+            hfDistortion.setGain(xmlState->getDoubleAttribute("gain"));
+            
+        }
+    
+    
 }
 
 //==============================================================================
