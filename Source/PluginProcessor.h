@@ -26,7 +26,6 @@ public:
 
     juce::AudioProcessorValueTreeState filterTree;
 
-    bool convolutionToggle = 0;
     bool distortionToggle = 0;
     
     //==============================================================================
@@ -38,7 +37,6 @@ public:
     bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
    #endif
 
-    
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
 
     //==============================================================================
@@ -73,19 +71,11 @@ private:
     Distortion fbDistortion;
     Convolution hfConvolution;
     Convolution fbConvolution;
-    
-    
-    
 
-    
     // Declare to duplicate a mono object to create a stereo object and rename
     juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter <float>, juce::dsp::IIR::Coefficients <float>> toneControlFilter;
     juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter <float>, juce::dsp::IIR::Coefficients <float>> hfHighPass;
     juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter <float>, juce::dsp::IIR::Coefficients <float>> lfLowPass;
-    juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter <float>, juce::dsp::IIR::Coefficients <float>> overallBandPass;
-    
-    juce::dsp::ProcessorDuplicator<juce::dsp::StateVariableFilter::Filter<float>, juce::dsp::StateVariableFilter::Parameters<float>> stateVariableFilter;
-    
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PedalModellingAudioProcessor)
