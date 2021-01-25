@@ -24,7 +24,6 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     void distortionButtonClicked();
-    void convolutionButtonClicked();
 
 private:
 
@@ -32,7 +31,6 @@ private:
     juce::Slider gainDial;
     juce::Label toneControlFreqLabel;
     juce::Label gainLabel;
-    juce::TextButton convolutionButton;
     juce::TextButton distortionButton;
     
     juce::Slider volumeDial;
