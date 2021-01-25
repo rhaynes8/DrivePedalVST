@@ -61,26 +61,13 @@ PedalModellingAudioProcessorEditor::PedalModellingAudioProcessorEditor (PedalMod
     
     volumeValue = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.filterTree, "volume", volumeDial);
     
-    // CONVOLUTION AND DISTORTION GUI COMPONENTS
-    convolutionButton.onClick = [this] { convolutionButtonClicked(); };
+    // DISTORTION GUI COMPONENTS
     distortionButton.onClick = [this] { distortionButtonClicked(); };
-    
-    convolutionButton.setButtonText("Convolution On/Off");
-    addAndMakeVisible(&convolutionButton);
-    
-    distortionButton.setButtonText("Distortion On/Off");
+    distortionButton.setButtonText("On/Off");
     addAndMakeVisible(&distortionButton);
     
 }
 
-void PedalModellingAudioProcessorEditor::convolutionButtonClicked()
-{
-    if (audioProcessor.convolutionToggle == 1) {
-        audioProcessor.convolutionToggle = 0;
-    } else {
-        audioProcessor.convolutionToggle = 1;
-    }
-}
 
 void PedalModellingAudioProcessorEditor::distortionButtonClicked()
 {
@@ -111,8 +98,7 @@ void PedalModellingAudioProcessorEditor::resized()
     gainDial.setBounds(75, 150, 100, 100);
     volumeDial.setBounds(225, 150, 100, 100);
     toneControlFreqDial.setBounds(150, 275, 100, 100);
-    convolutionButton.setBounds(100, 450, 50, 50);
-    distortionButton.setBounds(200, 450, 50, 50);
+    distortionButton.setBounds(162.5, 450, 80, 80);
 }
 
 
