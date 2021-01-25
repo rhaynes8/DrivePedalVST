@@ -16,24 +16,17 @@ Convolution::Convolution()
        
        juce::File path ("/Users/Richie/Desktop/JuceProjects/Plugins/DrivePedal");
        
-       //path = path.getSpecialLocation(juce::File::currentApplicationFile);
-       
-       //juce::String filePath = path.getSpecialLocation(juce::File::currentExecutableFile).getCurrentWorkingDirectory().getFileName();
-       
-       
-       //juce::String filePath = path.getCurrentWorkingDirectory().getFullPathName();
-       
-       
-       
-      // std::cout << ("Path = ") << filePath << std::endl;
-       //DBG(filePath);
-       
        auto& convolution = processorChain.template get<convolutionIndex>();
 
-       convolution.loadImpulseResponse (path.getChildFile("Resources").getChildFile("TS808_LowVolumeIR_.wav"),
-                                        juce::dsp::Convolution::Stereo::yes,
-                                        juce::dsp::Convolution::Trim::yes,
-                                        1024);
+       if (path.exists())
+       {
+           convolution.loadImpulseResponse (path.getChildFile("Resources").getChildFile("TS808Highs_CrankedIR.wav"),
+                                            juce::dsp::Convolution::Stereo::yes,
+                                            juce::dsp::Convolution::Trim::yes,
+                                            1024);
+       } else {
+           std::cout << "Check IR is in Resources folder" << std::endl;
+       }
   
    }
 
