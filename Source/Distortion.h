@@ -43,8 +43,15 @@ private:
     using Filter = juce::dsp::IIR::Filter<float>;
     using FilterCoefs = juce::dsp::IIR::Coefficients<float>;
     
+    static const size_t oversamplingOrder = 4;
+    static const int    oversamplingFactor = 1 << oversamplingOrder;
+    static const int numChannels = 2;
+    static const auto filterType = juce::dsp::Oversampling<float>::filterHalfBandPolyphaseIIR;
+    
+    
     juce::dsp::ProcessorChain<juce::dsp::ProcessorDuplicator<Filter, FilterCoefs>,
                              juce::dsp::Gain<float>, juce::dsp::WaveShaper<float, std::function<float (float)>>, juce::dsp::Gain<float>> processorChain;
+    juce::dsp::Oversampling<float> oversampling {numChannels, oversamplingOrder, filterType};
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Distortion)
     
