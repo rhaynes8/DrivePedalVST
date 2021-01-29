@@ -14,7 +14,9 @@
 Convolution::Convolution()
    {
        
-       juce::File path ("/Users/Richie/Desktop/JuceProjects/Plugins/DrivePedal");
+       // Bad for real-time convolution - Try and implement another way
+       
+       juce::File path = juce::File::getCurrentWorkingDirectory();
        
        auto& convolution = processorChain.template get<convolutionIndex>();
 
